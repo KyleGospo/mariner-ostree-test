@@ -1,0 +1,15 @@
+variables:
+  variant: "Mariner"
+
+include:
+  - common.yaml
+  - mariner-packages.yaml
+
+ref: kylegospo/azure/${basearch}/mariner
+rojig:
+  name: mariner
+  summary: "Azure Linux Atomic"
+  license: MIT
+
+packages:
+  - mariner-release

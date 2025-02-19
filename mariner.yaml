@@ -1,0 +1,11 @@
+variables:
+  bootable_container: true
+
+include:
+  - mariner-common.yaml
+
+# Kept in the leaf manifest as they are overwritten by Pungi in composes
+repos:
+  - azurelinux-official-base
+  - azurelinux-ms-oss
+  - azurelinux-ms-non-oss

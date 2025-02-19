@@ -1,0 +1,37 @@
+# SPDX-License-Identifier: MIT
+
+# Only used in https://gitlab.com/fedora/ostree/ci-test
+# For tests running in the Fedora infrastructure, see .zuul.yaml and
+# https://fedoraproject.org/wiki/Zuul-based-ci
+
+# See: https://gitlab.com/fedora/ostree/buildroot
+image: quay.io/fedora-ostree-desktops/buildroot
+
+stages:
+  - build
+
+# As those are not official images, we build all available variants
+.parallel:
+  parallel:
+    matrix:
+    - VARIANT:
+      - mariner
+
+# Only build the images for merge requests
+buildmr:
+  stage: build
+  script:
+    - just compose-image $VARIANT
+  parallel: !reference [.parallel, parallel]
+  rules:
+  - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
+# Build and upload the images for commits pushed to the branch & scheduled pipelines
+build:
+  stage: build
+  script:
+    - just compose-image $VARIANT
+    - just upload-container $VARIANT
+  parallel: !reference [.parallel, parallel]
+  rules:
+  - if: $CI_COMMIT_BRANCH == "main" && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "schedule")

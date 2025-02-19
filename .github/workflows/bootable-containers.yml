@@ -1,8 +1,5 @@
 name: "Build Mariner Bootable Container Image"
 
-env:
-  # REGISTRY: ""
-
 on:
   pull_request:
     branches:

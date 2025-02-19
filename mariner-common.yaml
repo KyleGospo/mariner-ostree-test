@@ -3,7 +3,10 @@ variables:
 
 include:
   - common.yaml
-  - mariner-packages.yaml
+  - baremetal-packages.yaml
+  - base-image-packages.yaml
+  - cloud-init-packages.yaml
+  - selinux.yaml
 
 ref: kylegospo/azure/${basearch}/mariner
 rojig:

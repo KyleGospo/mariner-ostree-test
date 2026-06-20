@@ -59,7 +59,7 @@ jobs:
           auth_file_path: /tmp/auth.json
 
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Get RPMs to override and setup repo
         run: |

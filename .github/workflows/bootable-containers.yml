@@ -29,7 +29,7 @@ jobs:
       matrix:
         variant: ['mariner']
 
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     container:
       image: quay.io/fedora-ostree-desktops/buildroot:rawhide
       options: --security-opt=label=disable --privileged --user 0:0 --device=/dev/kvm --device=/dev/fuse --volume /:/run/host:rw --volume /var/run/docker.sock:/var/run/docker.sock
